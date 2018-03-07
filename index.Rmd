@@ -1,0 +1,95 @@
+---
+title: "April 2018 Bug BBQ"
+author: François Michonneau
+date: April 12-13, 2018
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(glue)
+
+repos <- tibble::tribble(
+  ~repo_nm, ~org, ~primary, ~Lesson,
+  ## social sciences -----------------------------------------------------------
+  "spreadsheets-socialsci", "dc", TRUE, "Spreadsheets for Social Sciences", 
+  "openrefine-socialsci", "dc", TRUE, "OpenRefine for Social Sciences",
+  "r-socialsci", "dc", TRUE, "R for Social Sciences",
+  "python-socialsci", "dc", TRUE, "Python for Social Sciences",
+  "sql-socialsci", "dc", TRUE, "SQL for Social Sciences",
+  ## Geospatial ----------------------------------------------------------------
+  "r-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R",
+  "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data",
+  ## Ecology  ------------------------------------------------------------------
+  "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R",
+  "python-ecology-lesson", "dc", FALSE, "Python for Ecologists"
+) %>%
+  mutate(
+    org_ = case_when(org == "dc" ~ "datacarpentry",
+                     org == "swc" ~ "swcarpentry",
+                     org == "lc" ~ "librarycarpentry",
+                     TRUE ~ ""
+                     ),
+    Issues = glue::glue("[GitHub](https://github.com/{org_}/{repo_nm}/issues)"), 
+    Site = glue::glue("[Website](https://{org_}.github.io/{repo_nm}/)")
+         )
+
+
+primary_table <- repos %>%
+  filter(primary) %>%
+  select(Lesson, Issues, Site)
+
+secondary_table <- repos %>%
+  filter(!primary) %>%
+  select(Lesson, Issues, Site)
+
+```
+
+
+## Communication channels
+
+* We'll get organized with Slack. If you don't already have an account, you can [create one](https://swc-slack-invite.herokuapp.com/).
+
+
+### Main lessons
+
+```{r}
+knitr::kable(primary_table)
+```
+
+### Other lessons
+
+```{r}
+knitr::kable(secondary_table)
+```
+
+## Local Sites
+
+If you'd like to add your local group to the list of participating institutions to the Bug BBQ, please [open an issue](https://github.com/carpentries/2018-04-bug-bbq/issues/new).
+
+```{r}
+local_sites <- tibble::tribble(
+  ~Organization, ~Address, ~lat, ~long, ~date_time,
+  "University of Florida", "TBD", 29.6480513, -82.3444175, "TBD"
+)
+
+library(leaflet)
+
+map <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addMarkers(lng = local_sites$long,
+             lat = local_sites$lat,
+             popup = glue::glue("<b>{org}</b> <br> {address} <br> {date_time}",
+                                org = local_sites$Organization,
+                                address = local_sites$Address, 
+                                date_time = local_sites$date_time))
+map
+
+```
+
+
