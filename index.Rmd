@@ -23,7 +23,7 @@ repos <- tibble::tribble(
   "python-socialsci", "dc", TRUE, "Python for Social Sciences",
   "sql-socialsci", "dc", TRUE, "SQL for Social Sciences",
   ## Geospatial ----------------------------------------------------------------
-  "r-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R",
+  "R-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R",
   "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data",
   ## Ecology  ------------------------------------------------------------------
   "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R",
