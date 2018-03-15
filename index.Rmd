@@ -27,12 +27,15 @@ repos <- tibble::tribble(
   "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data",
   ## Ecology  ------------------------------------------------------------------
   "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R",
-  "python-ecology-lesson", "dc", FALSE, "Python for Ecologists"
+  "python-ecology-lesson", "dc", FALSE, "Python for Ecologists",
+  ## Instructor training -------------------------------------------------------
+  "instructor-training", "cc", FALSE, "Instructor Training"
 ) %>%
   mutate(
     org_ = case_when(org == "dc" ~ "datacarpentry",
                      org == "swc" ~ "swcarpentry",
                      org == "lc" ~ "librarycarpentry",
+                     org == "cc" ~ "carpentries", 
                      TRUE ~ ""
                      ),
     Issues = glue::glue("[GitHub](https://github.com/{org_}/{repo_nm}/issues)"), 
