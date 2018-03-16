@@ -79,8 +79,8 @@ If you'd like to add your local group to the list of participating institutions 
 
 ```{r}
 local_sites <- tibble::tribble(
-  ~Organization, ~Address, ~lat, ~long, ~date_time,
-  "University of Florida", "TBD", 29.6480513, -82.3444175, "TBD"
+  ~Organization, ~Address, ~lat, ~long, ~date_time, ~contact_person,
+  "University of Florida", "Informatics Institute Lecture Room", 29.6480513, -82.3444175, "Friday April 13th (time TBD)", "[Hao Ye](https://github.com/UF-Carpentry/Coordination/issues/11)"
 )
 
 library(leaflet)
@@ -98,7 +98,8 @@ map <- leaflet() %>%
 
 ```{r}
 local_sites %>%
-    select(Organization, date_time) %>% 
+    select(Organization, "Date/Time" = date_time,
+           "Contact Person" = contact_person) %>% 
     knitr::kable()
 ```
 
