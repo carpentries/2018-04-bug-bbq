@@ -28,6 +28,8 @@ repos <- tibble::tribble(
   ## Ecology  ------------------------------------------------------------------
   "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R",
   "python-ecology-lesson", "dc", FALSE, "Python for Ecologists",
+  ## Spanish Lesson ------------------------------------------------------------
+  "r-novice-gapminder-es", "swc", FALSE, "R para Análisis Científicos Reproducibles", 
   ## Instructor training -------------------------------------------------------
   "instructor-training", "cc", FALSE, "Instructor Training"
 ) %>%
