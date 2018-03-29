@@ -1,6 +1,5 @@
 ---
 title: "April 2018 Bug BBQ"
-author: François Michonneau
 date: April 12-13, 2018
 output: html_document
 ---
@@ -70,7 +69,7 @@ Most lessons have their own Slack channel. They are accessible from the README f
 
 If you have any questions, you are always welcome to ask them on the [General Slack channel](https://swcarpentry.slack.com/messages/C03LE48AY).
 
-### How to get involve and contribute?
+### How to get involved and contribute?
 
 Review our [Bug BBQ guide](https://hackmd.io/s/r1EDctqcG#).
 
