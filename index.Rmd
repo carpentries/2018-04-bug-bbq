@@ -15,43 +15,45 @@ library(tidyverse)
 library(glue)
 
 repos <- tibble::tribble(
-  ~repo_nm, ~org, ~primary, ~Lesson,
+  ~repo_nm, ~org, ~primary, ~Lesson, ~slack_id, ~slack_slug, 
   ## social sciences -----------------------------------------------------------
-  "spreadsheets-socialsci", "dc", TRUE, "Spreadsheets for Social Sciences", 
-  "openrefine-socialsci", "dc", TRUE, "OpenRefine for Social Sciences",
-  "r-socialsci", "dc", TRUE, "R for Social Sciences",
-  "python-socialsci", "dc", TRUE, "Python for Social Sciences",
-  "sql-socialsci", "dc", TRUE, "SQL for Social Sciences",
+  "spreadsheets-socialsci", "dc", TRUE, "Spreadsheets for Social Sciences", "C9X34DJ9Z", "dc-socsci-data-org", 
+  "openrefine-socialsci", "dc", TRUE, "OpenRefine for Social Sciences", "C9Y0UEXPY", "dc-socsci-openref", 
+  "r-socialsci", "dc", TRUE, "R for Social Sciences", "C9X9JDTSR", "dc-socsci-r", 
+  "python-socialsci", "dc", TRUE, "Python for Social Sciences", "C9WJEBW01", "dc-socsci-py-sosci", 
+  "sql-socialsci", "dc", TRUE, "SQL for Social Sciences", "C9Y6QJZ8F", "dc-socsci-sql",
   ## Geospatial ----------------------------------------------------------------
-  "R-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R",
-  "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data",
+  "R-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R", "C9ME7G5RD", "dc-geospatial",  
+  "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data", "C9ME7G5RD", "dc-geospatial", 
   ## Ecology  ------------------------------------------------------------------
-  "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R",
-  "python-ecology-lesson", "dc", FALSE, "Python for Ecologists",
+  "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R", "C9X9EC405", "dc-ecology-r", 
+  "python-ecology-lesson", "dc", FALSE, "Python for Ecologists", "C9X44HCDS", "dc-ecology-py", 
   ## Spanish Lesson ------------------------------------------------------------
-  "r-novice-gapminder-es", "swc", FALSE, "R para Análisis Científicos Reproducibles", 
+  "r-novice-gapminder-es", "swc", FALSE, "R para Análisis Científicos Reproducibles", "C9X9DN84V", "swc-r-gapminder-es", 
   ## Instructor training -------------------------------------------------------
-  "instructor-training", "cc", FALSE, "Instructor Training"
-) %>%
+  "instructor-training", "cc", FALSE, "Instructor Training", "C0CP2ERHA", "instructor-training", 
+  ) %>%
   mutate(
     org_ = case_when(org == "dc" ~ "datacarpentry",
                      org == "swc" ~ "swcarpentry",
                      org == "lc" ~ "librarycarpentry",
                      org == "cc" ~ "carpentries", 
                      TRUE ~ ""
-                     ),
+    ),
+    slack_slug = gsub("-", "--", slack_slug), 
     Issues = glue::glue("[GitHub](https://github.com/{org_}/{repo_nm}/issues)"), 
-    Site = glue::glue("[Website](https://{org_}.github.io/{repo_nm}/)")
-         )
+    Site = glue::glue("[Website](https://{org_}.github.io/{repo_nm}/)"),
+    Slack = glue::glue("[![Slack Channel](https://img.shields.io/badge/Slack_Channel-{slack_slug}-E01563.svg)](https://swcarpentry.slack.com/messages/{slack_id}/)")
+  )
 
 
 primary_table <- repos %>%
   filter(primary) %>%
-  select(Lesson, Issues, Site)
+  select(Lesson, Issues, Site, Slack)
 
 secondary_table <- repos %>%
   filter(!primary) %>%
-  select(Lesson, Issues, Site)
+  select(Lesson, Issues, Site, Slack)
 
 ```
 
@@ -62,17 +64,23 @@ secondary_table <- repos %>%
 
 * [Social Science Slack channel](https://swcarpentry.slack.com/messages/C9M87MC7Q)
 * [Geospatial Slack channel](https://swcarpentry.slack.com/messages/C9ME7G5RD)
+* [General Slack channel](https://swcarpentry.slack.com/messages/C03LE48AY)
 
 ### Main lessons
 
 ```{r}
-knitr::kable(primary_table)
+knitr::kable(primary_table, format = "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = TRUE) %>% 
+  kableExtra::column_spec(1, width = "60%")
+
 ```
 
 ### Other lessons
 
 ```{r}
-knitr::kable(secondary_table)
+knitr::kable(secondary_table, format = "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = TRUE) %>% 
+  kableExtra::column_spec(1, width = "60%")
 ```
 
 ## Local Sites
@@ -90,11 +98,11 @@ library(leaflet)
 map <- leaflet() %>%
   addProviderTiles(providers$CartoDB.Positron) %>% 
   addMarkers(lng = local_sites$long,
-             lat = local_sites$lat,
-             popup = glue::glue("<b>{org}</b> <br> {address} <br> {date_time}",
-                                org = local_sites$Organization,
-                                address = local_sites$Address, 
-                                date_time = local_sites$date_time))
+    lat = local_sites$lat,
+    popup = glue::glue("<b>{org}</b> <br> {address} <br> {date_time}",
+      org = local_sites$Organization,
+      address = local_sites$Address, 
+      date_time = local_sites$date_time))
 ```
 
 
