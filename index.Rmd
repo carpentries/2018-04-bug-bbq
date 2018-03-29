@@ -41,30 +41,40 @@ repos <- tibble::tribble(
                      TRUE ~ ""
     ),
     slack_slug = gsub("-", "--", slack_slug), 
-    Issues = glue::glue("[GitHub](https://github.com/{org_}/{repo_nm}/issues)"), 
     Site = glue::glue("[Website](https://{org_}.github.io/{repo_nm}/)"),
+    `All Issues` = glue::glue("[GitHub](https://github.com/{org_}/{repo_nm}/issues)"), 
     Slack = glue::glue("[![Slack Channel](https://img.shields.io/badge/Slack_Channel-{slack_slug}-E01563.svg)](https://swcarpentry.slack.com/messages/{slack_id}/)")
   )
 
 
+
 primary_table <- repos %>%
   filter(primary) %>%
-  select(Lesson, Issues, Site, Slack)
+  select(Lesson, `All Issues`, Site, Slack)
 
 secondary_table <- repos %>%
   filter(!primary) %>%
-  select(Lesson, Issues, Site, Slack)
+  select(Lesson, `All Issues`, Site, Slack)
 
 ```
 
 
-## Communication channels
+## Communication
 
-* We'll get organized with Slack. If you don't already have an account, you can [create one](https://swc-slack-invite.herokuapp.com/).
+We'll get organized with Slack. If you don't already have an account, you can [create one](https://swc-slack-invite.herokuapp.com/).
+
+Most lessons have their own Slack channel. They are accessible from the README file in their respective GitHub repositories. To coordinate across lessons, we also set up channels for the Social Sciences and Geospatial curricula:
 
 * [Social Science Slack channel](https://swcarpentry.slack.com/messages/C9M87MC7Q)
 * [Geospatial Slack channel](https://swcarpentry.slack.com/messages/C9ME7G5RD)
-* [General Slack channel](https://swcarpentry.slack.com/messages/C03LE48AY)
+
+If you have any questions, you are always welcome to ask them on the [General Slack channel](https://swcarpentry.slack.com/messages/C03LE48AY).
+
+### How to get involve and contribute?
+
+Review our [Bug BBQ guide](https://hackmd.io/s/r1EDctqcG#).
+
+Look for issues with the <span style="font-family: monospace; font-weight: bold; color: #222222; background-color: #FFEB3A; border-radius: 4px; padding: 4px;">good first issue</span> or the <span style="font-family: monospace; font-weight: bold; color: #222222; background-color: #FFF8C4; border-radius: 4px; padding: 4px;">help wanted</span> labels among the issues in the lesson repositories.
 
 ### Main lessons
 
