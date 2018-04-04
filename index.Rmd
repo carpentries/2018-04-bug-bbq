@@ -101,7 +101,8 @@ If you'd like to add your local group to the list of participating institutions 
 local_sites <- tibble::tribble(
   ~Organization, ~Address, ~lat, ~long, ~date_time, ~contact_person,
   "University of Florida", "Informatics Institute Lecture Room", 29.6480513, -82.3444175, "Friday April 13th (1pm - 5pm)", "[Hao Ye](https://github.com/UF-Carpentry/Coordination/issues/11)",
-  "The Carpentries Headquarters", "Upstairs from Golden One Bank, Davis, CA", 38.5427382, -121.7439358, "Thursday April 12 (9am-6pm), Friday April 13th (9am-6pm)", "[Sign up](https://docs.google.com/spreadsheets/d/1bP5vwL65B15sTF4lyMQvH6dw3jL1m_JlgmYFhllSVto/edit#gid=0)"
+  "The Carpentries Headquarters", "Upstairs from Golden One Bank, Davis, CA", 38.5427382, -121.7439358, "Thursday April 12 (9am-6pm), Friday April 13th (9am-6pm)", "[Sign up](https://docs.google.com/spreadsheets/d/1bP5vwL65B15sTF4lyMQvH6dw3jL1m_JlgmYFhllSVto/edit#gid=0)",
+  "R Ladies Buenos Aires",  "Exact location TBD", -34.6037, -58.3816, " Thursday, April 12 (time TBD)", "[Rayna Harris](rayna.harris@gmail.com)"
 )
 
 library(leaflet)
