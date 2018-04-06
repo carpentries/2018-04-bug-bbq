@@ -23,14 +23,15 @@ repos <- tibble::tribble(
   "python-socialsci", "dc", TRUE, "Python for Social Sciences", "C9WJEBW01", "dc-socsci-py-sosci", 
   "sql-socialsci", "dc", TRUE, "SQL for Social Sciences", "C9Y6QJZ8F", "dc-socsci-sql",
   ## Geospatial ----------------------------------------------------------------
+  "r-intro-geospatial", "dc", TRUE, "Intro to R for Geospatial Sciences", "C9ME7G5RD", "dc-geospatial",
+  "organization-geospatial", "dc", TRUE, "Intro to Geospatial Data", "C9ME7G5RD", "dc-geospatial",
   "R-spatial-raster-vector-lesson", "dc", TRUE, "Intro to Geospatial Data With R", "C9ME7G5RD", "dc-geospatial",  
-  "r-spatial-data-management-intro", "dc", TRUE, "Intro to Geospatial Data", "C9ME7G5RD", "dc-geospatial", 
   ## Ecology  ------------------------------------------------------------------
   "R-ecology-lesson", "dc", FALSE, "Manipulation and Visualization of Ecological Data with R", "C9X9EC405", "dc-ecology-r", 
   "python-ecology-lesson", "dc", FALSE, "Python for Ecologists", "C9X44HCDS", "dc-ecology-py", 
   ## Spanish Lesson ------------------------------------------------------------
   "r-novice-gapminder-es", "swc", FALSE, "R para Análisis Científicos Reproducibles", "C9X9DN84V", "swc-r-gapminder-es", 
-  ## ---------------------------------------------------------------------------
+  ## SWC R ---------------------------------------------------------------------
   "r-novice-inflammation", "swc", FALSE, "Programming with R", "C9WDPCMUG", "swc-r-inflammation",
   ## Instructor training -------------------------------------------------------
   "instructor-training", "cc", FALSE, "Instructor Training", "C0CP2ERHA", "instructor-training", 
